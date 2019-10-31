@@ -1,55 +1,76 @@
 import React from 'react';
-import {InputGroup, Input, Button, Container, Row, Col} from 'reactstrap';
+import {
+  InputGroup,
+  Input,
+  Button,
+  Container,
+  Row,
+  Col,
+  Table,
+} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Updation = ({id, upd}) => {
-  const [name, setname] = React.useState ('');
-  const [num, setnum] = React.useState ('');
-  const [email, setemail] = React.useState ('');
+  const [name, setname] = React.useState('');
+  const [num, setnum] = React.useState('');
+  const [email, setemail] = React.useState('');
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <InputGroup>
-            <Input
-              placeholder="Contact Name"
-              onChange={e => setname (e.target.value)}
-              value={name}
-            />
-          </InputGroup>
-        </Col>
-        <Col>
-          <InputGroup>
-            <Input
-              placeholder="Phone Number"
-              minlength={0}
-              maxlength={9999999999}
-              type="number"
-              step="1"
-              onChange={e => setnum (e.target.value)}
-              value={num}
-            />
-          </InputGroup>
-        </Col>
-        <Col>
-          <InputGroup>
-            <Input
-              placeholder="username@email.com"
-              onChange={e => setemail (e.target.value)}
-              value={email}
-            />
-          </InputGroup>
-        </Col>
-        <Button
-          color="primary"
-          onClick={() => {
-            upd (name, num, email, id);
-          }}
-        >
-          Save
-        </Button>
-      </Row>
+      <Table hover dark>
+        <thead>
+          <br />
+          <h5> update here....... </h5>
+          {''}
+          <tr>
+            <th>
+              {' '}
+              <InputGroup>
+                <Input
+                  style={{width: 150}}
+                  placeholder=" Name"
+                  onChange={e => setname(e.target.value)}
+                  value={name}
+                />
+              </InputGroup>
+            </th>
+            <th>
+              <InputGroup>
+                <Input
+                  placeholder="Phone"
+                  style={{width: 100}}
+                  minlength={0}
+                  maxlength={9999999999}
+                  type="number"
+                  step="1"
+                  onChange={e => setnum(e.target.value)}
+                  value={num}
+                />
+              </InputGroup>
+            </th>
+            <th>
+              <InputGroup>
+                <Input
+                  placeholder="username@email.com"
+                  style={{width: 150}}
+                  onChange={e => setemail(e.target.value)}
+                  value={email}
+                />
+              </InputGroup>
+            </th>
+            <th>
+              <Button
+                color="primary"
+                onClick={() => {
+                  upd(name, num, email, id);
+                }}
+              >
+                Save
+              </Button>
+            </th>
+          </tr>
+        </thead>
+      </Table>
     </Container>
   );
 };

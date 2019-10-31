@@ -5,28 +5,29 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Container, Row, Col, Table, Button} from 'reactstrap';
 
 const List = ({list, Delete, upd}) => {
-  const [check, setcheck] = React.useState (false);
-  const [data, setdata] = React.useState ('');
-  const [count, setcount] = React.useState (1);
+  const [check, setcheck] = React.useState(false);
+  const [data, setdata] = React.useState('');
+  const [count, setcount] = React.useState(1);
 
   return (
-    <Container>
+    <Container style={{margin: '20px'}}>
       <Row>
-        <Col sm="12" md={{size: 6, offset: 4}}>
-          <Table striped>
+        <Col sm="12" md={{size: 8, offset: 1}}>
+          {check === true ? <Updation id={data} upd={upd} /> : null}
+          <Table hover dark block>
             <thead>
               <tr>
                 <th>Name</th>
                 <th>Phone_Number</th>
                 <th> Email_id </th>
-                <th>              </th>
-                <th>              </th>
+                <th> </th>
+                <th> </th>
               </tr>
             </thead>
 
-            {check === true ? <Updation id={data} upd={upd} /> : null}
+            {/* {check === true ? <Updation id={data} upd={upd} /> : null} */}
             <tbody>
-              {list.map (lis => {
+              {list.map(lis => {
                 return (
                   <tr key={lis._id}>
                     <td>{lis.name}</td>
@@ -36,34 +37,36 @@ const List = ({list, Delete, upd}) => {
                       <Button
                         color="danger"
                         onClick={() => {
-                          Delete (lis._id);
+                          Delete(lis._id);
                         }}
                       >
                         Del
                       </Button>
                     </td>
                     <td>
-                      {count % 2 !== 0
-                        ? <Button
-                            color="primary"
-                            onClick={() => {
-                              console.log ('entered');
-                              setcount (count + 1);
-                              setcheck (true);
-                              setdata (lis._id);
-                            }}
-                          >
-                            Edit
-                          </Button>
-                        : <Button
-                            color="primary"
-                            onClick={() => {
-                              setcount (count + 1);
-                              setcheck ('false');
-                            }}
-                          >
-                            Cancle
-                          </Button>}
+                      {count % 2 !== 0 ? (
+                        <Button
+                          color="primary"
+                          onClick={() => {
+                            console.log('entered');
+                            setcount(count + 1);
+                            setcheck(true);
+                            setdata(lis._id);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                      ) : (
+                        <Button
+                          color="primary"
+                          onClick={() => {
+                            setcount(count + 1);
+                            setcheck('false');
+                          }}
+                        >
+                          Cancle
+                        </Button>
+                      )}
                     </td>
                   </tr>
                 );
